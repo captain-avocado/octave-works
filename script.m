@@ -1,5 +1,5 @@
 clear; clc;
-printf('Welcome to the laboratory work #0!\n');
+printf('Laboratory works #0-1\n');
 while 1,
 	clear;
 	printf('Press (1) to conv vectors \nPress (2) to plot matricies \nPress (0) to exit \n');
