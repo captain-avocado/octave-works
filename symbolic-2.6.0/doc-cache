@@ -1,0 +1,1193 @@
+# doc-cache created by Octave 4.0.3
+# name: cache
+# type: cell
+# rows: 3
+# columns: 22
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+assume
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 836
+ -- Command: assume X COND
+ -- Command: assume X COND COND2 ...
+ -- Command: assume X Y ... COND COND2 ...
+     Specify assumptions for a symbolic variable (replace existing).
+
+     Example:
+          syms n x y
+          assume n integer
+          assume x y real
+          assumptions
+            ⇒ ans =
+              {
+                [1,1] = n: integer
+                [1,2] = x: real
+                [1,3] = y: real
+              }
+
+     To clear assumptions on a variable, use ‘assume x clear’, for
+     example:
+          assume x y clear
+          assumptions
+            ⇒ ans =
+              {
+                [1,1] = n: integer
+              }
+
+     For more precise control over assumptions, *note @sym/assume:: and
+     *note @sym/assumeAlso::.
+
+     See also: @sym/assume, @sym/assumeAlso, assumptions, sym, syms.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 63
+Specify assumptions for a symbolic variable (replace existing).
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+assumptions
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1260
+ -- Function: A = assumptions ()
+ -- Function: A = assumptions (X)
+ -- Function: [V, D] = assumptions (X, 'dict')
+ -- Function: L = assumptions ('possible')
+     List assumptions on symbolic variables.
+
+     The assumptions are returned as a cell-array of strings:
+          syms x y positive
+          syms n integer
+          assumptions
+            ⇒ ans =
+              {
+                [1,1] = n: integer
+                [1,2] = x: positive
+                [1,3] = y: positive
+              }
+          assumptions(n)
+            ⇒ ans =
+              {
+                [1,1] = n: integer
+              }
+
+     You can get the list of assumptions relevant to an expression:
+          f = sin(n*x);
+          assumptions(f)
+            ⇒ ans =
+              {
+                [1,1] = n: integer
+                [1,2] = x: positive
+              }
+
+     With the optional second argument set to the string ‘'dict'’,
+     return the assumption dictionaries in D corresponding to the
+     variables in V.
+
+     You can also get a list of possible assumptions:
+          A = assumptions('possible');
+          strjoin(sort(A), ', ')
+            ⇒ ans = ..., finite, ..., positive, ..., zero
+
+     See also: sym, syms, @sym/assume, @sym/assumeAlso.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 39
+List assumptions on symbolic variables.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+bernoulli
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 441
+ -- Function: B = bernoulli (N)
+ -- Function: P = bernoulli (N, X)
+     Return symbolic Bernoulli numbers or Bernoulli polynomials.
+
+     Examples:
+          bernoulli(6)
+            ⇒ (sym) 1/42
+          bernoulli(7)
+            ⇒ (sym) 0
+
+     Polynomial example:
+          syms x
+          bernoulli(2, x)
+            ⇒ (sym)
+                 2       1
+                x  - x + ─
+                         6
+
+     See also: euler.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 59
+Return symbolic Bernoulli numbers or Bernoulli polynomials.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+catalan
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 219
+ -- Constant: catalan ()
+     Return Catalan constant.
+
+          catalan ()
+            ⇒ (sym) Catalan
+
+          vpa (catalan ())
+            ⇒ (sym) 0.91596559417721901505460351493238
+
+     See also: eulergamma.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 24
+Return Catalan constant.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+cell2sym
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 358
+ -- Function: @sym cell2sym (X)
+     Convert cell array to symbolic array.
+
+     Examples:
+          cell2sym({'x', 'y'})
+            ⇒ ans = (sym) [x  y]  (1×2 matrix)
+
+          cell2sym({'x', 2; pi 'y'})
+            ⇒ ans = (sym 2×2 matrix)
+                ⎡x  2⎤
+                ⎢    ⎥
+                ⎣π  y⎦
+
+     See also: sym, syms.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 37
+Convert cell array to symbolic array.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+digits
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 472
+ -- Command: digits N
+ -- Function: digits (N)
+ -- Function: N = digits ()
+ -- Function: OLDN = digits (N)
+     Set/get number of digits used in variable precision arith.
+
+     Examples:
+          n_orig = digits(7);
+          vpa('pi')
+            ⇒ (sym) 3.141593
+
+          digits(42)
+          vpa('pi')
+            ⇒ (sym) 3.14159265358979323846264338327950288419717
+
+          digits(n_orig)      % reset digits to saved value
+
+     See also: sym, vpa, vpasolve.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 58
+Set/get number of digits used in variable precision arith.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 5
+dirac
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 453
+ -- Function: dirac (X)
+     Compute the Dirac delta (generalized) function.
+
+     The Dirac delta “function” is a generalized function (or
+     distribution) which is zero almost everywhere, except at the origin
+     where it is infinite.
+
+     Examples:
+          dirac (0)
+            ⇒ Inf
+          dirac (1)
+            ⇒ 0
+          dirac ([-10 -1 0 1 inf])
+            ⇒ 0     0   Inf     0     0
+
+     See also: heaviside, @sym/dirac.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 47
+Compute the Dirac delta (generalized) function.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+eulergamma
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 228
+ -- Constant: eulergamma ()
+     Return Euler–Mascheroni constant.
+
+          eulergamma
+            ⇒ (sym) γ
+
+          vpa (eulergamma ())
+            ⇒ (sym) 0.57721566490153286060651209008240
+
+     See also: catalan.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 35
+Return Euler–Mascheroni constant.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+evalpy
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2389
+ -- Function: evalpy (CMD)
+ -- Function: evalpy (CMD, X, Y, ...)
+     Run Python code, automatically transferring results.
+
+     *Note* this function is _deprecated_.
+          s = warning ('off', 'OctSymPy:deprecated');
+
+     Examples:
+          x = -4;
+          evalpy ('y = 2*x', x)
+            ⊣ y = -8
+          y
+            ⇒ y = -8
+
+     You can replace ‘x’ with a new value in the Python code:
+          syms x
+          evalpy ('y = 3*x; x = -1.5; z = x**2', x)
+            ⊣ x = -1.5000
+            ⊣ y = (sym) 3⋅x
+            ⊣ z =  2.2500
+
+     All arguments can be accessed as ‘i0’, ‘i1’, etc.  This is useful
+     if they don’t have inputnames:
+          x = 10;
+          evalpy ('y = ", ".join( (str(x),str(i0),str(i1)) )', x, 5)
+            ⊣ y = 10.0, 10.0, 5.0
+
+     If you need a variable in Python but don’t want it passed back to
+     Octave, put an ‘_’ (underscore) at the beginning or end.
+          x = 20;
+          evalpy ('_y = 3*x; z_ = _y/6; my = z_/2;', x)
+            ⊣ Variables effected: my
+          _y
+            ⊣ ??? '_y' undefined near line 1 column 1
+          z_
+            ⊣ ??? 'z_' undefined near line 1 column 1
+          warning (s);
+
+     The final few characters of CMD effect the verbosity:
+        • 2 semicolons ‘;;’, very quiet, no output.
+        • 1 semicolon ‘;’, a one-line msg about variables assigned.
+        • no semicolon, display each variable assigned.
+
+     Multiline code should be placed in a cell array, see the
+     ‘python_cmd’ documentation.
+
+     Warning: evalpy is probably too smart for its own good.  It is
+     intended for interactive use.  In your non-interactive code, you
+     might want ‘python_cmd’ instead.
+
+     Notes:
+        • if you assign to X but don’t change its value, it will not be
+          assigned to and will not appear in the “Variables effected”
+          list.
+        • using print is probably a bad idea.  For now, use ‘dbout(x)’
+          to print ‘x’ to stderr which should appear in the terminal
+          (FIXME: currently broken on windows).
+        • evalpy is a bit of a work-in-progress and subject to change.
+          For example, with a proper IPC mechanism, you could grab the
+          values of X etc when needed and not need to specify them as
+          args.
+
+     See also: python_cmd.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 52
+Run Python code, automatically transferring results.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+fibonacci
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 496
+ -- Function: F = fibonacci (N)
+ -- Function: P = fibonacci (N, X)
+     Return symbolic Fibonacci numbers or Fibonacci polynomials.
+
+     Examples:
+          fibonacci(15)
+            ⇒ (sym) 610
+          syms n
+          fibonacci(n)
+            ⇒ (sym) fibonacci(n)
+
+     Polynomial example:
+          syms x
+          fibonacci(10, x)
+            ⇒ (sym)
+                 9      7       5       3
+                x  + 8⋅x  + 21⋅x  + 20⋅x  + 5⋅x
+
+     See also: euler, bernoulli.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 59
+Return symbolic Fibonacci numbers or Fibonacci polynomials.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 11
+findsymbols
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 827
+ -- Function: findsymbols (X)
+     Return a list (cell array) of the symbols in an expression.
+
+     The list is sorted alphabetically.  For details, *note
+     @sym/symvar::.
+
+     If two variables have the same symbol but different assumptions,
+     they will both appear in the output.  It is not well-defined in
+     what order they appear.
+
+     X could be a sym, sym array, cell array, or struct.
+
+          syms x y z
+          C = {x, 2*x*y, [1 x; sin(z) pi]};
+          findsymbols (C)
+            ⇒ ans =
+                {
+                  (sym) x
+                  (sym) y
+                  (sym) z
+                }
+
+     Note ℯ, ⅈ, π, etc are not considered as symbols.
+
+     Note only returns symbols actually appearing in the RHS of a
+     ‘symfun’.
+
+     See also: symvar, @sym/symvar, @sym/findsym.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 59
+Return a list (cell array) of the symbols in an expression.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+finiteset
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2129
+ -- Function: S = finiteset (A, B, ...)
+ -- Function: S = finiteset (CELLARRAY)
+ -- Function: EMPTYSET = finiteset ()
+     Return a symbolic set containing the inputs without duplicates.
+
+     Example:
+          syms x y
+          S = finiteset(1, pi, x, 1, 1, x, x + y)
+            ⇒ S = (sym) {1, π, x, x + y}
+          subs(S, x, pi)
+            ⇒ ans = (sym) {1, π, y + π}
+
+     You can also use this to make the empty set:
+          finiteset()
+            ⇒ ans = (sym) ∅
+
+     You cannot directly access elements of a set using indexing:
+          S(2)
+            ⊣ ??? ind2sub: index out of range
+     Instead you can first convert it to a cell (*note @sym/children::):
+          elements = children(S)
+            ⇒ elements = (sym) [1  π  x  x + y]  (1×4 matrix)
+          elements(end)
+            ⇒ ans = (sym) x + y
+
+     Careful, passing a matrix creates a set of matrices (rather than a
+     set from the elements of the matrix):
+          finiteset([1 x 1 1])
+            ⇒ ans = (sym) {[1  x  1  1]}
+          finiteset([1 pi], [1 x 1 1], [1 pi])
+            ⇒ ans = (sym) {[1  π], [1  x  1  1]}
+
+     On the other hand, if you _want_ to make a set from the elements of
+     a matrix, first convert it to a cell array:
+          A = [1 x 1; 2 1 x];
+          finiteset(num2cell(A))
+            ⇒ ans = (sym) {1, 2, x}
+
+     Sets can be nested:
+          finiteset(finiteset(), finiteset(finiteset()))
+            ⇒ (sym) {∅, {∅}}
+
+     *Note* that cell arrays are _not_ the same thing as sets (despite
+     the similar rendering using ‘{’ and ‘}’).  For example, this
+     creates a set containing a set:
+          finiteset(finiteset(1, 2, 3, 3))
+            ⇒ ans = (sym) {{1, 2, 3}}
+     whereas passing a single cell array CELLARRAY creates a set
+     containing each element of CELLARRAY:
+          finiteset({1, 2, 3, 3})
+            ⇒ ans = (sym) {1, 2, 3}
+     (This is implemented mainly to enable the ‘num2cell’ example
+     above.)
+
+     See also: @sym/interval, @sym/ismember, @sym/children, @sym/union,
+     @sym/intersect, @sym/setdiff, @sym/setxor.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 63
+Return a symbolic set containing the inputs without duplicates.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+heaviside
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 602
+ -- Function: heaviside (X)
+ -- Function: heaviside (X, ZERO_VALUE)
+     Compute the Heaviside unit-step function.
+
+     The Heaviside function is 0 for negative X and 1 for positive X.
+
+     Example:
+          heaviside([-inf -3 -1 1 3 inf])
+            ⇒ 0     0     0     1     1     1
+
+     There are various conventions for ‘heaviside(0)’; this function
+     returns 0.5 by default:
+          heaviside(0)
+            ⇒ 0.50000
+     However, this can be changed via the optional second input
+     argument:
+          heaviside(0, 1)
+            ⇒ 1
+
+     See also: dirac, @sym/heaviside.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 41
+Compute the Heaviside unit-step function.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 9
+laguerreL
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1148
+ -- Function: laguerreL (N, X)
+     Evaluate Laguerre polynomials.
+
+     Compute the value of the Laguerre polynomial of order N for each
+     element of X.
+
+     This implementation uses a three-term recurrence directly on the
+     values of X.  The result is numerically stable, as opposed to
+     evaluating the polynomial using the monomial coefficients.  For
+     example, we can symbolically construct the Laguerre polynomial of
+     degree 14 and evaluate it at the point 6:
+          syms x
+          L = laguerreL (14, x);
+          exact = subs (L, x, 6)
+            ⇒ exact = (sym)
+                34213
+                ─────
+                35035
+     But if we extract the monomial coefficients and numerically
+     evaluate the polynomial at a point, the result is rather poor:
+          coeffs = sym2poly (L);
+          polyval (coeffs, 6)
+            ⇒ 0.97654
+          ans - double (exact)
+            ⇒ -1.6798e-11
+     So please don’t do that!  The numerical ‘laguerreL’ function does
+     much better:
+          laguerreL (14, 6) - double (exact)
+            ⇒ 9.9920e-16
+
+     See also: @sym/laguerreL.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 30
+Evaluate Laguerre polynomials.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+lambertw
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1504
+ -- Function: lambertw (Z)
+ -- Function: lambertw (N, Z)
+     Compute the Lambert W function of Z.
+
+     This function satisfies W(z).*exp(W(z)) = z, and can thus be used
+     to express solutions of transcendental equations involving
+     exponentials or logarithms.
+
+     N must be integer, and specifies the branch of W to be computed;
+     W(z) is a shorthand for W(0,z), the principal branch.  Branches 0
+     and -1 are the only ones that can take on non-complex values.
+
+     For example, the principal branch passes through the point (0, 0):
+          lambertw (0)
+            ⇒ ans = 0
+     And the 0 and -1 branches coincide for the following real value:
+          x = -1/exp (1);
+          lambertw (x)
+            ⇒ ans = -1
+          lambertw (-1, x)
+            ⇒ ans = -1
+
+     If either N or Z are non-scalar, the function is mapped to each
+     element; both may be non-scalar provided their dimensions agree.
+     For example, we can repeat the above calculation as:
+          lambertw ([0 -1], x)
+            ⇒ ans =
+                -1  -1
+
+     This implementation should return values within 2.5*eps of its
+     counterpart in Maple V, release 3 or later.  Please report any
+     discrepancies to the author, Nici Schraudolph
+     <schraudo@inf.ethz.ch>.
+
+     For further algorithmic details, see:
+
+     Corless, Gonnet, Hare, Jeffrey, and Knuth (1996), ‘On the Lambert W
+     Function’, Advances in Computational Mathematics 5(4):329-359.
+
+     See also: @sym/lambertw.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 36
+Compute the Lambert W function of Z.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+octsympy_tests
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 444
+ -- Function: octsympy_tests ()
+     Run the OctSymPy tests, log results, and return true if any fail.
+
+     I threw this together by modifying "__run_test_suite__.m" which is
+     Copyright (C) 2005-2013 David Bateman and part of GNU Octave, GPL
+     v3.
+
+     FIXME: once we no longer try to support Octave 3.6, drop most of
+     this and call "__run_test_suite({'@sym', '@symfun'}, {})" instead.
+     See https://savannah.gnu.org/bugs/?41215
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 65
+Run the OctSymPy tests, log results, and return true if any fail.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+poly2sym
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 718
+ -- Function: poly2sym (C)
+ -- Function: poly2sym (C, X)
+     Create a symbolic polynomial expression from coefficients.
+
+     If X is not specified, the free variable is set to ‘sym('x')’.  C
+     may be a vector of doubles or syms.  It can also be a cell array
+     vector.  X may be a symbolic expression or something that converts
+     to one.  The coefficients correspond to decreasing exponent of the
+     free variable.
+
+     Example:
+          x = sym ('x');
+          y = sym ('y');
+          poly2sym ([2 5])
+            ⇒ (sym) 2⋅x + 5
+          poly2sym ({2*y 5 -3}, x)
+            ⇒ (sym)
+                   2
+                2⋅x ⋅y + 5⋅x - 3
+
+     See also: @sym/sym2poly, polyval, roots.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 58
+Create a symbolic polynomial expression from coefficients.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 10
+python_cmd
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2773
+ -- Function: [A, B, ...] = python_cmd (CMD, X, Y, ...)
+     Run some Python command on some objects and return other objects.
+
+     Here CMD is a string of Python code.  Inputs X, Y, ... can be a
+     variety of objects (possible types listed below).  Outputs A, B,
+     ... are converted from Python objects: not all types are possible,
+     see below.
+
+     Example:
+          x = 10; y = 2;
+          cmd = '(x, y) = _ins; return (x+y, x-y)';
+          [a, b] = python_cmd (cmd, x, y)
+            ⇒ a =  12
+            ⇒ b =  8
+
+     The inputs will be in a list called ’_ins’.  Instead of ‘return’,
+     you can append to the Python list ‘_outs’:
+          cmd = '(x, y) = _ins; _outs.append(x**y)';
+          a = python_cmd (cmd, x, y)
+            ⇒ a =  100
+
+     If you want to return a list, one way to to append a comma to the
+     return command.  Compare these two examples:
+          L = python_cmd ('return [1, -3.4, "python"],')
+            ⇒ L =
+              {
+                [1,1] =  1
+                [1,2] = -3.4000
+                [1,3] = python
+              }
+          [a, b, c] = python_cmd ('return [1, -3.4, "python"]')
+            ⇒ a =  1
+            ⇒ b = -3.4000
+            ⇒ c = python
+
+     You can also pass a cell-array of lines of code.  But be careful
+     with whitespace: its Python!
+          cmd = { '(x,) = _ins'
+                  'if x.is_Matrix:'
+                  '    return x.T'
+                  'else:'
+                  '    return x' };
+     The cell array can be either a row or a column vector.  Each of
+     these strings probably should not have any newlines (other than
+     escaped ones e.g., inside strings).  An exception might be Python
+     triple-quoted """ multiline strings """.  FIXME: test this.  It
+     might be a good idea to avoid blank lines as they can cause
+     problems with some of the IPC mechanisms.
+
+     Possible input types:
+        • sym objects
+        • strings (char)
+        • scalar doubles
+        • structs
+     They can also be cell arrays of these items.  Multi-D cell arrays
+     may not work properly.
+
+     Possible output types:
+        • SymPy objects
+        • int
+        • float
+        • string
+        • unicode strings
+        • bool
+        • dict (converted to structs)
+        • lists/tuples (converted to cell vectors)
+     FIXME: add a py_config to change the header?  The python
+     environment is defined in python_header.py.  Changing it is
+     currently harder than it should be.
+
+     Note: if you don’t pass in any syms, this shouldn’t need SymPy.
+     But it still imports it in that case.  If you want to run this w/o
+     having the SymPy package, you’d need to hack a bit.
+
+     See also: evalpy.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 65
+Run some Python command on some objects and return other objects.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 7
+sympref
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 3927
+ -- Command: sympref CMD
+ -- Command: sympref CMD ARGS
+ -- Function: R = sympref ()
+ -- Function: R = sympref (CMD)
+ -- Function: R = sympref (CMD, ARGS)
+     Preferences for the Symbolic package.
+
+     ‘sympref’ can set or get various preferences and configurations.
+     The various choices for CMD and ARGS are documented below.
+
+     Get the name of the *Python executable*:
+          sympref python
+            ⇒ ans = python
+
+     This value can be changed by setting the environment variable
+     ‘PYTHON’, which can be configured in the OS, or it can be set
+     within Octave using:
+          setenv PYTHON /usr/bin/python
+          setenv PYTHON C:\Python\python.exe
+          sympref reset
+     If the environment variable is empty or not set, the package uses a
+     default setting (usually ‘python’).
+
+     *Display* of syms:
+
+          sympref display
+            ⇒ ans = unicode
+
+          syms x
+          sympref display flat
+          sin(x/2)
+            ⇒ (sym) sin(x/2)
+
+          sympref display ascii
+          sin(x/2)
+            ⇒ (sym)
+                   /x\
+                sin|-|
+                   \2/
+
+          sympref display unicode
+          sin(x/2)
+            ⇒ (sym)
+                   ⎛x⎞
+                sin⎜─⎟
+                   ⎝2⎠
+
+          sympref display default
+
+     By default, a unicode pretty printer is used to display symbolic
+     expressions.  If that doesn’t work (e.g., if you see ‘?’
+     characters) then try the ‘ascii’ option.
+
+     *Communication mechanism*:
+
+          sympref ipc
+            ⇒ ans = default
+
+     The default will typically be the ‘popen2’ mechanism which uses a
+     pipe to communicate with Python and should be fairly fast.  If that
+     doesn’t work, try ‘sympref display system’ which is much slower, as
+     a new Python process is started for each operation (many commands
+     use more than one operation).  Other options for ‘sympref ipc’
+     include:
+        • ‘sympref ipc popen2’: force popen2 choice (e.g., on Matlab
+          were it would not be the default).
+        • ‘sympref ipc native’: use native Python/C interface to
+          interact directly with an embedded Python interpreter.  This
+          is highly experimental and requires functions provided by the
+          “pytave” project which have not yet been merged into Octave.
+        • ‘sympref ipc system’: construct a long string of the command
+          and pass it directly to the python interpreter with the
+          ‘system()’ command.  This typically assembles a multiline
+          string for the commands, except on Windows where a long
+          one-line string is used.
+        • ‘sympref ipc systmpfile’: output the python commands to a
+          ‘tmp_python_cmd.py’ file and then call that [for debugging,
+          may not be supported long-term].
+        • ‘sympref ipc sysoneline’: put the python commands all on one
+          line and pass to ‘python -c’ using a call to ‘system()’.  [for
+          debugging, may not be supported long-term].
+
+     *Reset*: reset the SymPy communication mechanism.  This can be
+     useful after an error occurs and the connection with Python becomes
+     confused.
+
+          sympref reset                              % doctest: +SKIP
+
+     *Default precision*: control the number of digits used by
+     variable-precision arithmetic (see also the *note digits::
+     command).
+
+          sympref digits          % get
+            ⇒ ans = 32
+          sympref digits 64       % set
+          sympref digits default
+
+     Be *quiet* by minimizing startup and diagnostics messages:
+          sympref quiet
+            ⇒ ans = 0
+          sympref quiet on
+          sympref quiet default
+
+     Report the *version* number:
+
+          sympref version
+            ⇒ 2.6.0
+
+     See also: sym, syms.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 37
+Preferences for the Symbolic package.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 4
+syms
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1253
+ -- Command: syms
+ -- Command: syms X
+ -- Command: syms X Y ...
+ -- Command: syms F(X)
+ -- Command: syms X ASM
+ -- Command: syms X ASM ASM2 ...
+     Create symbolic variables and symbolic functions.
+
+     This is a convenience function.  For example:
+          syms x y z
+     instead of:
+          x = sym('x');
+          y = sym('y');
+          z = sym('z');
+
+     The last arguments can provide one or more assumptions (type or
+     restriction) on the variable (*note sym::).
+          syms x y z positive
+          syms n positive even
+
+     Symfuns represent abstract or concrete functions.  Abstract symfuns
+     can be created with ‘syms’:
+          syms f(x)
+     Here ‘x’ is created in the callers workspace, as a *side effect*.
+
+     Called without arguments, ‘syms’ displays a list of all symbolic
+     functions defined in the current workspace.
+
+     Caution: On Matlab, you may not want to use ‘syms’ within
+     functions.  In particular, if you shadow a function name, you may
+     get hard-to-track-down bugs.  For example, instead of writing ‘syms
+     alpha’ use ‘alpha = sym('alpha')’ within functions.
+     [https://www.mathworks.com/matlabcentral/newsreader/view_thread/237730]
+
+     See also: sym, assume.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 49
+Create symbolic variables and symbolic functions.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 3
+vpa
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 664
+ -- Function: vpa (X)
+ -- Function: vpa (X, N)
+     Create a variable-precision floating point number.
+
+     X can be a string, a sym or a double.  Example:
+          x = vpa('1/3', 32)
+            ⇒ x = (sym) 0.33333333333333333333333333333333
+          a = sym(1)/3;
+          x = vpa(a, 32)
+            ⇒ x = (sym) 0.33333333333333333333333333333333
+
+     Be careful when creating a high-precision float from a double as
+     you will generally only get 15 digits:
+          vpa(1/3, 32)
+            ⇒ (sym) 0.33333333333333331482961625624739
+
+     If N is omitted it defaults to the current value of ‘digits()’.
+
+     See also: sym, vpasolve, digits.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 50
+Create a variable-precision floating point number.
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 8
+vpasolve
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1262
+ -- Function: vpasolve (E)
+ -- Function: vpasolve (E, X)
+ -- Function: vpasolve (E, X, X0)
+     Numerical solution of a symbolic equation.
+
+     Variable-precision numerical solution of the equation E for
+     variable X using initial guess of X0.
+
+     Example:
+          syms x
+          eqn = exp(x) == x + 2;
+          vpasolve(eqn, x, 0.1)
+            ⇒ (sym) 1.1461932206205825852370610285214
+
+     Systems of equations are supported:
+          syms x y
+          eqns = [y*exp(x) == 16; x^5 == x + x*y^2]
+            ⇒ eqns = (sym 2×1 matrix)
+
+                ⎡     x       ⎤
+                ⎢  y⋅ℯ  = 16  ⎥
+                ⎢             ⎥
+                ⎢ 5      2    ⎥
+                ⎣x  = x⋅y  + x⎦
+
+          vpasolve(eqns, [x; y], [1; 1])
+            ⇒ (sym 2×1 matrix)
+
+                ⎡1.7324062670465659633407456995303⎤
+                ⎢                                 ⎥
+                ⎣2.8297332667835974266598942031498⎦
+
+     Complex roots can be found but you must provide a complex initial
+     guess:
+          vpasolve(x^2 + 2 == 0, x, 1i)
+            ⇒ (sym) 1.4142135623730950488016887242097⋅ⅈ
+
+     Some of the examples above require SymPy version 1.1 or later.
+
+     See also: vpa.
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 42
+Numerical solution of a symbolic equation.
+
+
+
+
+

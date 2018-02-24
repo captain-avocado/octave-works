@@ -1,0 +1,12 @@
+setenv("GNUTERM","qt");
+cd ~/octave;  
+EDITOR ("/Applications/SublimeText.app/Contents/SharedSupport/bin/subl");
+PS1("\\[\\033[0;36m\\] \\033[0;37m\\]");
+clc;
+
+
+pkg load symbolic
+setenv PYTHON /usr/local/bin/python3
+syms x 
+
+#setenv("GNUTERM","qt");

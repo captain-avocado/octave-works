@@ -1,17 +1,25 @@
-function [out] = langrange(px, x, y)
+function [out] = lagrange(px, x, y)
 	% x -- аргументы функции (узлы)
 	% y -- значения функции
 	% px -- точки в которых хотим интерполировать 
-	L = ones(1, length(x));
-	for i = 1:length(x) - 1,
-		for j = 1:length(x),
-			if (i ~= j),
-				L(i) *= (px - x(j))/(x(i) - x(j));
+
+	% построение матрицы полиномов: каждая строка матрицы состоит из коэффициентов для конкретной точки, каждый элемент в строке L -- это слагаемое из полинома (при x(i)) без учета f(x(i))
+	L = ones(length(px), length(x));
+	for k = 1:length(px),
+		for i = 1:length(x),
+			for j = 1:length(x),
+				if (i ~= j),
+					L(k, i) *= (px(k) - x(j))/(x(i) - x(j));
+				end;
 			end;
 		end;
 	end;
-	out = 0;
-	for i = 1:length(x)-1,
-		out += y(i) * L(i);
+	out = zeros(1, length(px));
+	
+	% значения всех слагаемых суммируются, предварительно каждое умножается на коэффициент f(x(i))
+	for k = 1:length(px),
+		for i = 1:length(x),
+			out(k) += y(i) * L(k, i);
+		end;
 	end;
 endfunction
