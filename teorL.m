@@ -1,14 +1,14 @@
-function out = teorR(a, b, f, h, p)
+function out = teorR(a, b, f, h)
 	syms g(x)
 	g(x) = f;
 	% найти количество точек, поделив общее расстояние на расстояние промежутка между точками
 	% fix - целая часть
 	num = fix((b - a) / h) + 1;
-	% найти w(x) = (x - x(1))(x - x(2))...(x - x(num))
-	w = 1;
-	for i = 1:num,
-		w *= p - (a + (i - 1)*h);
-	end;
+	% % найти w(x) = (x - x(1))(x - x(2))...(x - x(num))
+	% w = 1;
+	% for i = 1:num,
+	% 	w *= p - (a + (i - 1)*h);
+	% end;
 	% найти производную функции num-ого порядка в символьной форме
 	dg = diff(g, num);
 	% преобразовать в строку, затем в анонимную функцию
@@ -18,6 +18,14 @@ function out = teorR(a, b, f, h, p)
 	% задать промежуток и найти наибольшую производную на нем
 	x = a:0.01:b;
 	mdiff = max(dgF(x));
-	% использовать формулу расчета теоретической погрешности 
-	out = abs((w * mdiff)/(factorial(num)));
+	for k = 1:length(x),
+		% найти w(x) = (x - x(1))(x - x(2))...(x - x(num))
+		w = 1;
+		for i = 1:num,
+			w *= x(k) - (a + (i - 1)*h);
+		end;
+		% использовать формулу расчета теоретической погрешности 
+		out(k) = abs((w * mdiff)/(factorial(num)));
+	end;
+	out = max(out);
 endfunction
