@@ -13,8 +13,8 @@ function out = teorR(a, b, f, h)
 	dg = diff(g, num);
 	% преобразовать в строку, затем в анонимную функцию
 	% как преобразовать символическую переменную в функцию? 
-	dgF = eval(strcat('@(x)', char(dg)));
-	% dgF = matlabFunction(dg)
+	% dgF = eval(strcat('@(x)', char(dg)));
+	dgF = matlabFunction(dg);
 	% задать промежуток и найти наибольшую производную на нем
 	x = a:0.01:b;
 	mdiff = max(dgF(x));

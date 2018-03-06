@@ -1,3 +1,4 @@
+warning("off");
 clear; clc;
 printf('Laboratory works #0-1-2\n');
 while 1,
@@ -53,38 +54,50 @@ while 1,
 		x = a:h:b;
 		% вектор значений по ox для нахождения значений полинома на заданном промежутке
 		nx = a:0.1:b;
-		% интерполяционный полином в форме Ньютона (для равноотстоящих узлов)
+		% интерполяционный полином в форме Ньютона (для равностоящих узлов)
 		ny = newton(nx, x, f(x));
 		% нахождение опитмальных узлов интерполяции с помощью полинома Чебышев
 		chx = chebushev(a, b, fix((b - a) / h) + 1);
 		% интерполяционный полином в форме Лагранжа (для неравноотстоящих узлов)
-		% chy = newton(nx, chx, f(chx));
-		chy = lagrange(nx, chx, f(chx));
+		chy = newNewton(nx, chx, f(chx));
+		% chy = lagrange(nx, chx, f(chx));
 		% сравнительные графики
 		plot(nx, f(nx), nx, ny, "r", nx, chy, "c")
-		legend('Исходная функция','Равноотстоящие узлы','Узлы по полиному Чебышева', 4);
+		legend('Исходная функция','Равностоящие узлы','Узлы по полиному Чебышева', 4);
 		printf('Plotting completed\n')
 		% максимальные погрешности на промежутке: теоретические и практические
 		maxTeor = teorL(a, b, f, h)
 		maxPract = max(abs(f(nx) .- ny))
 		maxTeorChebushev = teorCh(a, b, f, fix((b - a) / h) + 1)
 		maxPractChebushev = max(abs(f(nx) .- chy))
-		t = 1;
-		while t ~= 0,
-		t = input("Enter the point to сalculate approximation: ");
-		d = alph = zeros(1, 12);
-		for i = 1:50,
-			% t = 5.673;
-			% x = a:
-			chx = chebushev(a, b, i);
-			chy = lagrange(t, chx, f(chx));
-			ny = newton(t, )
-			d(i) = abs(f(t) - chy);
-			alph(i) = -log(d(i))/log(i);
+		% t = 0;
+		% while t ~= 1,
+			t = input("Enter the point to сalculate approximation: ");
+			if or(t > b, t < a), error("Incorrect point"); end;
+			d = alph = zeros(1, 5);
+			for i = 1:5,
+				chx = chebushev(a, b, i);
+				% chy = lagrange(t, chx, f(chx));
+				chy = newNewton(t, chx, f(chx));
+				d(i) = abs(f(t) - chy);
+				if i ~= 1,
+					alph(i) = (-log(d(i)))/log(i);
+				end;
+			end;
+			% z = zeros(1, length(p));
+			i = [1:5];
+			p = 0:0.1:10;
+			z = zeros(1, length(p));
+			for j = 1:5
+			z = 1./p.^(alph(j));
+			plot(p, z)
+			hold on;
 		end;
-		i = [1:50];
-		plot(i, d, i, alph, "m")
-end;
+						% plot(i, d, i, alph, "m")
+
+			% legend('Погрешность', 'Степень гиберболы', 4);
+			printf('Plotting completed\n')
+		% end;
 	elseif ~choose,
 		break;
 	end;
