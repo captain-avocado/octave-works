@@ -14,6 +14,7 @@ function [out] = matri(n)
 				x *= x;
 			end;
 		end;
+		M
 		multi = M * inv(M);
 		out(i) = sum(multi(:)) - i;
 	end;
