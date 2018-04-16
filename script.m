@@ -122,18 +122,18 @@ while 1,
 			A(i, num - 1) = 1;
 			A(i, num) = (-1).^(i);
 		end;
-		% A
+		A
 		fvect = zeros(num, 1);
 		for i = 1:num,
 			fvect(i) = f(x(i));
 		end;
-		% fvect
+		fvect
 		alph = mldivide(A, fvect)
-		x = a:h:b;
+		x = a:0.1:b;
  		Q = zeros(length(x), 1);
  		for i = 1:length(x)
-			for j = 1:num,
-				Q(i) += alph(j) * (x(i).^(j - 1));
+			for j = 1:num-1,
+				Q(i) += alph(j+1) * (x(i).^(j - 1));
 			end;
 		end;
 		Q
