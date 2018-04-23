@@ -31,7 +31,7 @@ deltSimps = zeros(1, num);
 alphSimps = zeros(1, num);
 
 
-for i = 2 : num,
+for i = 1 : num,
 
 	defaultIntegral
 
@@ -94,3 +94,7 @@ for i = 2 : num,
 	printf("----\n")
 
 end;
+
+plot(1:num, alphLeft, 1:num, alphRight, 1:num, alphTrapz, 1:num, alphSimps);
+legend('Левые прям-ки', 'Правые прям-ки', 'Трапеции', 'Ф-ла Симпсона');
+
